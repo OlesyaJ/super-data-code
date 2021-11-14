@@ -34,7 +34,7 @@ class _$TableModelTearOff {
     );
   }
 
-  TableModel fromJson(Map<String, Object?> json) {
+  TableModel fromJson(Map<String, Object> json) {
     return TableModel.fromJson(json);
   }
 }
@@ -186,16 +186,25 @@ class _$_TableModel with DiagnosticableTreeMixin implements _TableModel {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _TableModel &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.inn, inn) || other.inn == inn) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.status, status) || other.status == status));
+        (other is _TableModel &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.inn, inn) ||
+                const DeepCollectionEquality().equals(other.inn, inn)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, inn, address, status);
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(inn) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(status);
 
   @JsonKey(ignore: true)
   @override
@@ -219,13 +228,13 @@ abstract class _TableModel implements TableModel {
       _$_TableModel.fromJson;
 
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  String get inn;
+  String get inn => throw _privateConstructorUsedError;
   @override
-  String get address;
+  String get address => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TableModelCopyWith<_TableModel> get copyWith =>

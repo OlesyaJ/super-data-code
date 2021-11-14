@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'presentation/pages/main/main_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() {
-  runApp(const MyApp());
+  setPathUrlStrategy();
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,11 +16,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Green House',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MainPage(),
+      routes: {
+        '/':(context) => const MainPage(),
+      },
     );
   }
 }

@@ -16,7 +16,7 @@ class _MapWidgetState extends State<MapWidget> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return WebViewX(
-          initialContent: 'https://silly-brattain-708d85.netlify.app',
+          initialContent: 'https://musing-lamport-acc640.netlify.app/',
           initialSourceType: SourceType.url,
           onWebViewCreated: (controller) {
             webviewController = controller;
